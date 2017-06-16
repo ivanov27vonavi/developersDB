@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - initdb@localhost" uuid="ebbd1e3d-68b1-4df6-85c0-c310a25ecdc8">
+    <database-info product="MySQL" version="5.7.18-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="initdb"/>
+    <table name="companies" schema="" catalog="initdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name_company" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_companies_has_projects_companies1" table="companies_has_projects" schema="" catalog="initdb" columns="companies_id"/>
+    </table>
+    <table name="companies_has_projects" schema="" catalog="initdb" type="TABLE">
+      <column name="companies_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="projects_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="companies_id,projects_id"/>
+      <foreign-key name="fk_companies_has_projects_companies1" columns="companies_id" ref-table="companies" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_companies_has_projects_projects1" columns="projects_id" ref-table="projects" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_companies_has_projects_companies1_idx" unique="false" columns="companies_id"/>
+      <index name="fk_companies_has_projects_projects1_idx" unique="false" columns="projects_id"/>
+    </table>
+    <table name="customers" schema="" catalog="initdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="customer_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_customers_has_projects_customers1" table="customers_has_projects" schema="" catalog="initdb" columns="customers_id"/>
+    </table>
+    <table name="customers_has_projects" schema="" catalog="initdb" type="TABLE">
+      <column name="customers_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="projects_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="customers_id,projects_id"/>
+      <foreign-key name="fk_customers_has_projects_customers1" columns="customers_id" ref-table="customers" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_customers_has_projects_projects1" columns="projects_id" ref-table="projects" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_customers_has_projects_customers1_idx" unique="false" columns="customers_id"/>
+      <index name="fk_customers_has_projects_projects1_idx" unique="false" columns="projects_id"/>
+    </table>
+    <table name="developers" schema="" catalog="initdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="skils_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="salary" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="company" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_projects_has_developers_developers1" table="projects_has_developers" schema="" catalog="initdb" columns="developers_id"/>
+      <exported-key name="fk_skils_has_developers_developers1" table="skils_has_developers" schema="" catalog="initdb" columns="developers_id"/>
+    </table>
+    <table name="projects" schema="" catalog="initdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="project_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_companies_has_projects_projects1" table="companies_has_projects" schema="" catalog="initdb" columns="projects_id"/>
+      <exported-key name="fk_customers_has_projects_projects1" table="customers_has_projects" schema="" catalog="initdb" columns="projects_id"/>
+      <exported-key name="fk_projects_has_developers_projects" table="projects_has_developers" schema="" catalog="initdb" columns="projects_id"/>
+    </table>
+    <table name="projects_has_developers" schema="" catalog="initdb" type="TABLE">
+      <column name="projects_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="developers_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="projects_id,developers_id"/>
+      <foreign-key name="fk_projects_has_developers_developers1" columns="developers_id" ref-table="developers" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_projects_has_developers_projects" columns="projects_id" ref-table="projects" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_projects_has_developers_developers1_idx" unique="false" columns="developers_id"/>
+      <index name="fk_projects_has_developers_projects_idx" unique="false" columns="projects_id"/>
+    </table>
+    <table name="skils" schema="" catalog="initdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="skils_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_skils_has_developers_skils1" table="skils_has_developers" schema="" catalog="initdb" columns="skils_id"/>
+    </table>
+    <table name="skils_has_developers" schema="" catalog="initdb" type="TABLE">
+      <column name="skils_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="developers_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="skils_id,developers_id"/>
+      <foreign-key name="fk_skils_has_developers_developers1" columns="developers_id" ref-table="developers" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_skils_has_developers_skils1" columns="skils_id" ref-table="skils" ref-schema="" ref-catalog="initdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_skils_has_developers_developers1_idx" unique="false" columns="developers_id"/>
+      <index name="fk_skils_has_developers_skils1_idx" unique="false" columns="skils_id"/>
+    </table>
+  </data-source>
+</component>
